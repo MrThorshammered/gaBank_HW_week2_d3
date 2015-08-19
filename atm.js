@@ -47,7 +47,7 @@ $('#balance1').css('background-color', 'grey')
 $('#amount2').val("")
 $('#balance2').css('background-color', 'grey')
 }
-
+// withdraw from everyday account
 function removeFundsE(){
 	var previousBalance = $('#balance1');
     var result = $(previousBalance).text();
@@ -61,11 +61,20 @@ function removeFundsE(){
 
 	previousBalance.text(function(){
 		var total = currentBalance - newFunds;
-		if (total > 0){
+		// Trying to get the accounts to work together
+	var dualWithdraw = function(){
+		if(removeFundsE.total < 0){
+			var leftOver = newFunds - total;
+			return leftOver;
+			var doubleWithdraw = removeFundsS(total) - leftOver
+		};
+	}
+	     if (total > 0){
 			return "$" + total;
-		}else{
+		}else if (total < 0){
 			return "$" + currentBalance
 		};
+	
 	});
 
 $('#amount1').val("")
